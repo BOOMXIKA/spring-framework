@@ -92,6 +92,8 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 		List<Advisor> advisors = super.findCandidateAdvisors();
 		// Build Advisors for all AspectJ aspects in the bean factory.
 		if (this.aspectJAdvisorsBuilder != null) {
+			//从Ioc容器里所有切面类中 创建出一个advisors链
+			//aspectJAdvisorsBuilder这个东西应该是在Ioc容器初始化的时候initBeanFactory方法中创建的
 			advisors.addAll(this.aspectJAdvisorsBuilder.buildAspectJAdvisors());
 		}
 		return advisors;

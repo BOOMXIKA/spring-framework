@@ -119,6 +119,16 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+/**
+ * @Import 将AspectJAutoProxyRegistrar注入到Ioc容器中
+ *
+ * 拓展:
+ * AspectJAutoProxyRegistrar实现了ImportBeanDefinitionRegistrar接口
+ * 它需要和@Configuration配合使用，在@Configuration之前已注册的Bean，可以由ImportBeanDefinitionRegistrar接口来处理
+ *
+ * 这个方法可以拿到@Import的这个class的Annotation Metadata，以及此时的BeanDefinitionRegistry对象，通过BeanDefinitionRegistry 就可以拿到目前所有注册的BeanDefinition，可以自定义逻辑来动态注册一些你觉得必要的BeanDefinition。
+ *
+ */
 @Import(AspectJAutoProxyRegistrar.class)
 public @interface EnableAspectJAutoProxy {
 
